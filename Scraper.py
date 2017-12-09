@@ -31,6 +31,7 @@ class Scraper():
         print(board)
         print(thread)
         print(url)
+        # I have no idea what this does :0
         req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
         gcontext = ssl._create_unverified_context()  # Only for gangstars
         uClient = urlopen(req, context=gcontext)
@@ -88,7 +89,7 @@ class Scraper():
         print("Text:\t \t" + textInfo)
         print("----------------------")
         # Saving the details of apost
-        log_filename = title + " " + postTime + ".csv"
+        log_filename = title.strip() + postNumber + ".csv"
         f = open(log_filename, "w")
         headers = "Author, Time, Number, Message\n"
         f.write(headers)
