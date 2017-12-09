@@ -11,6 +11,9 @@ board = "aco"
 saveDirectory = "/root/" #SET THE SAVE POSITION
 timesRun = 0
 
+filesDownloadedTemp = 0
+filesDownloadedTotal = 0
+
 while 1 == 1:
 
     timesRun += 1
@@ -24,7 +27,7 @@ while 1 == 1:
         else:
             pageNumber = ''
 
-        print("Links for Page " + str(y) + ": ")
+        # print("Links for Page " + str(y) + ": ")
 
         req = Request("https://boards.4chan.org/" + board + "/" + pageNumber, headers={'User-Agent': 'Mozilla/5.0'})
         uClient = urlopen(req)
@@ -35,8 +38,12 @@ while 1 == 1:
 
         for x in threadContainers:
             threadToDownload = Scraper("https://boards.4chan.org/aco/thread/" + x["id"][1:], saveDirectory)
-            print("Downloading thread https://boards.4chan.org/aco/thread/" + x["id"][1:])
+            # print("Downloading thread https://boards.4chan.org/aco/thread/" + x["id"][1:])
+            filesDownloadedTemp += Scraper.getFilesDownloaded()
 
+    filesDownloadedTotal += filesDownloadedTemp
+    print(str(filesDownloadedTemp) + " downloaded from last run")
+    print(str(filesDownloadedTotal) + " downloaded in total")
     time.sleep(300)
 
 ################################

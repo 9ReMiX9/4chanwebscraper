@@ -18,8 +18,12 @@ txt_message = ''
 txt_thread = ''
 
 numberOfContainers = 0
+filesDownloaded = 0
 
 class Scraper():
+
+    def getFilesDownloaded(self):
+        return filesDownloaded
 
     def __init__(self, input_url, input_saveFolder):
         saveFolder = input_saveFolder
@@ -30,9 +34,9 @@ class Scraper():
         board = url[:url.find("/")]
         thread = url.replace(board + "/thread/", "")
         url = input_url
-        print(board)
-        print(thread)
-        print(url)
+        # print(board)
+        # print(thread)
+        # print(url)
         # I have no idea what this does :0
         req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
         gcontext = ssl._create_unverified_context()  # Only for gangstars
@@ -139,7 +143,7 @@ class Scraper():
                 if postImage.find("4cdn") > -1:
 
                     if not os.path.isfile(saveDirectory):
-                        print(saveDirectory)
+                        # print(saveDirectory)
                         urlretrieve("https://" + postImage, saveDirectory)
                     # else:
                         # print("File already exists, skipping")                                        #
