@@ -6,7 +6,7 @@ from Scraper import Scraper
 
 
 board = "aco"
-saveDirectory = "/" #SET THE SAVE POSITION
+saveDirectory = "/root/" #SET THE SAVE POSITION
 
 for y in range(1,10):
     #Finding all pages from board
