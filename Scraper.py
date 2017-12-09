@@ -127,7 +127,7 @@ class Scraper():
             # print("Post \t\t" + postNumber)
             # print("Text: \t\t" + postText)
 
-            headers = posterName + "," + postTime +  "," + postNumber +  "," + postText + "\n"
+            headers = posterName + "," + postTime +  "," + postNumber +  "," + postText.replace(',', '') + "\n"
             f.write(headers)
 
             # Downloading Attached Image

@@ -44,6 +44,7 @@ while 1 == 1:
     filesDownloadedTotal += filesDownloadedTemp
     print(str(filesDownloadedTemp) + " downloaded from last run")
     print(str(filesDownloadedTotal) + " downloaded in total")
+    print("Ran " + timesRun + " times")
     time.sleep(300)
 
 ################################
