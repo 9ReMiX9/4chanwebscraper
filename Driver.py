@@ -7,7 +7,7 @@ import time
 from Scraper import Scraper
 
 
-board = "gif"
+board = "t"
 saveDirectory = "/root/" #SET THE SAVE POSITION
 timesRun = 0
 
@@ -21,7 +21,7 @@ while 1 == 1:
 
     print(timesRun)
 
-    for y in range(1,4):
+    for y in range(1,10):
         #Finding all pages from board
         if not y == 1:
             pageNumber = str(y)
@@ -38,7 +38,7 @@ while 1 == 1:
         threadContainers = page_soup.findAll("div", {"class": "thread"})
 
         for x in threadContainers:
-            threadToDownload = Scraper("https://boards.4chan.org/aco/thread/" + x["id"][1:], saveDirectory)
+            threadToDownload = Scraper("https://boards.4chan.org/" + board + "/thread/" + x["id"][1:], saveDirectory)
             # print("Downloading thread https://boards.4chan.org/aco/thread/" + x["id"][1:])
             filesDownloadedTemp += threadToDownload.getFilesDownloaded()
 
