@@ -1,6 +1,7 @@
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 from urllib.request import Request, urlopen, urlretrieve
+from google.cloud import storage
 import os
 import ssl
 
@@ -11,10 +12,12 @@ import ssl
 thread = ''
 board = ''
 url = ''
+saveFolder = ''
 
 class Scraper():
 
-    def __init__(self, input_url):
+    def __init__(self, input_url, input_saveFolder):
+        saveFolder = input_saveFolder
         url = input_url
         url = url.replace("https://boards.4chan.org/", "")
         url = url.replace("https://www.boards.4chan.org/", "")
@@ -57,7 +60,7 @@ class Scraper():
         # Making Directory
         if len(title) == 0:
             title = "Untitled"
-        directory = "H:/Documents/4ChanFolders/" + board + "/" + title.strip()
+        directory = saveFolder + board + "/" + title.strip()
 
         fileClass = postContainers[0].div.findAll("div", {"class": "file"})
         postImage = fileClass[0].a["href"]

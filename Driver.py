@@ -1,11 +1,13 @@
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 from urllib.request import Request, urlopen, urlretrieve
+from google.cloud import storage
 import os
 from Scraper import Scraper
 
 
 board = "aco"
+saveDirectory = "/" #SET THE SAVE POSITION
 
 for y in range(1,10):
     #Finding all pages from board
@@ -24,5 +26,5 @@ for y in range(1,10):
     threadContainers = page_soup.findAll("div", {"class": "thread"})
 
     for x in threadContainers:
-        threadToDownload = Scraper("https://boards.4chan.org/aco/thread/" + x["id"][1:])
+        threadToDownload = Scraper("https://boards.4chan.org/aco/thread/" + x["id"][1:], saveDirectory)
         print("Downloading thread https://boards.4chan.org/aco/thread/" + x["id"][1:])
