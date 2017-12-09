@@ -7,7 +7,7 @@ import time
 from Scraper import Scraper
 
 
-board = "aco"
+board = "t"
 saveDirectory = "/root/" #SET THE SAVE POSITION
 timesRun = 0
 
@@ -16,10 +16,6 @@ filesDownloadedTotal = 0
 
 while 1 == 1:
 
-    if timesRun % 2 != 0:
-        board = 't'
-    else:
-        board = 'aco'
 
     timesRun += 1
 
@@ -49,7 +45,7 @@ while 1 == 1:
     filesDownloadedTotal += filesDownloadedTemp
     print(str(filesDownloadedTemp) + " downloaded from last run")
     print(str(filesDownloadedTotal) + " downloaded in total")
-    print("Ran " + timesRun + " times")
+    print("Ran " + str(timesRun) + " times")
     time.sleep(300)
 
 ################################
