@@ -22,9 +22,6 @@ filesDownloaded = 0
 
 class Scraper():
 
-    def getFilesDownloaded(self):
-        return filesDownloaded
-
     def __init__(self, input_url, input_saveFolder):
         saveFolder = input_saveFolder
         url = input_url
@@ -109,7 +106,7 @@ class Scraper():
 
         for post in postContainers:
             print("Downloading file " + str(counter) +"/" + str(numberOfContainers))
-            counter += 1
+            self.counter += 1
             postInfo = post.findAll("div", {"class": "post reply"})
             # Finds Posters Name
             PostInfo = postInfo[0].findAll("div", {"class": "postInfo"})
@@ -157,3 +154,8 @@ class Scraper():
 
             # print("----------------------")
         f.close()
+
+
+
+    def getFilesDownloaded(self):
+        return filesDownloaded

@@ -39,7 +39,7 @@ while 1 == 1:
         for x in threadContainers:
             threadToDownload = Scraper("https://boards.4chan.org/aco/thread/" + x["id"][1:], saveDirectory)
             # print("Downloading thread https://boards.4chan.org/aco/thread/" + x["id"][1:])
-            filesDownloadedTemp += Scraper.getFilesDownloaded()
+            filesDownloadedTemp += threadToDownload.getFilesDownloaded()
 
     filesDownloadedTotal += filesDownloadedTemp
     print(str(filesDownloadedTemp) + " downloaded from last run")
