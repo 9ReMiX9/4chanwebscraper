@@ -17,6 +17,8 @@ saveFolder = ''
 txt_message = ''
 txt_thread = ''
 
+numberOfContainers = 0
+
 class Scraper():
 
     def __init__(self, input_url, input_saveFolder):
@@ -76,19 +78,20 @@ class Scraper():
         if postImage.find("4cdn") > -1:
             ogSaveDirectory = directory + postImage[11 + len(board):]
             urlretrieve("https://" + postImage, ogSaveDirectory)
-        else:
-            print("Error download image (1)")
+
+            # print("Error download image (1)")
         #(1) : Image has bad download name
 
 
-        # Printing the details of post
-        print("Title: \t \t" + title)
-        print("OP: \t \t" + poster)
-        print("Time: \t \t" + postTime)
-        print("Post: \t \t" + postNumber)
-        print("Text:\t \t" + textInfo)
-        print("----------------------")
+        # Printing the details of post                                                                  #
+        # print("Title: \t \t" + title)
+        # print("OP: \t \t" + poster)
+        # print("Time: \t \t" + postTime)
+        # print("Post: \t \t" + postNumber)
+        # print("Text:\t \t" + textInfo)
+        # print("----------------------")
         # Saving the details of apost
+
         log_filename = title.strip() + postNumber + ".csv"
         f = open(log_filename, "w")
         headers = "Author, Time, Number, Message\n"
@@ -96,7 +99,13 @@ class Scraper():
 
         postContainers.remove(postContainers[0])
 
+        numberOfContainers = len(postContainers)
+
+        counter = 1
+
         for post in postContainers:
+            print("Downloading file " + str(counter) +"/" + str(numberOfContainers))
+            counter += 1
             postInfo = post.findAll("div", {"class": "post reply"})
             # Finds Posters Name
             PostInfo = postInfo[0].findAll("div", {"class": "postInfo"})
@@ -112,10 +121,10 @@ class Scraper():
                 postTime = "Not Found"
             # Finds Text Attached
             postText = post.blockquote.text
-            print("Poster: \t" + posterName)
-            print("Time: \t\t" + postTime)
-            print("Post \t\t" + postNumber)
-            print("Text: \t\t" + postText)
+            # print("Poster: \t" + posterName)                                                          #
+            # print("Time: \t\t" + postTime)
+            # print("Post \t\t" + postNumber)
+            # print("Text: \t\t" + postText)
 
             headers = posterName + "," + postTime +  "," + postNumber +  "," + postText + "\n"
             f.write(headers)
@@ -132,13 +141,15 @@ class Scraper():
                     if not os.path.isfile(saveDirectory):
                         print(saveDirectory)
                         urlretrieve("https://" + postImage, saveDirectory)
-                    else:
-                        print("File already exists, skipping")
-                else:
-                    print("Error download image (1)")
+                    # else:
+                        # print("File already exists, skipping")                                        #
+                # else:
+                    # print("Error download image (1)")                                                 #
                     # (1) : Image has bad download name
             except:
-                print("No Image")
+                fartbox = 1
 
-            print("----------------------")
+            os.system('clear')
+
+            # print("----------------------")
         f.close()
