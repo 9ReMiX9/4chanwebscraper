@@ -1,7 +1,6 @@
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 from urllib.request import Request, urlopen, urlretrieve
-from google.cloud import storage
 import os
 from Scraper import Scraper
 
