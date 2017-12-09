@@ -7,7 +7,7 @@ import time
 from Scraper import Scraper
 
 
-board = "t"
+board = "gif"
 saveDirectory = "/root/" #SET THE SAVE POSITION
 timesRun = 0
 
@@ -21,7 +21,7 @@ while 1 == 1:
 
     print(timesRun)
 
-    for y in range(1,10):
+    for y in range(1,4):
         #Finding all pages from board
         if not y == 1:
             pageNumber = str(y)
