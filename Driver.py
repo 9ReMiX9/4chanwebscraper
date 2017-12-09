@@ -16,6 +16,11 @@ filesDownloadedTotal = 0
 
 while 1 == 1:
 
+    if timesRun % 2 != 0:
+        board = 't'
+    else:
+        board = 'aco'
+
     timesRun += 1
 
     print(timesRun)
