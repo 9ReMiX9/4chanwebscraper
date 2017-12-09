@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup as soup
 from urllib.request import Request, urlopen, urlretrieve
 import os
 import ssl
+import datetime
 
 # thread = '1929094'
 # board = 'aco'
@@ -12,6 +13,9 @@ thread = ''
 board = ''
 url = ''
 saveFolder = ''
+
+txt_message = ''
+txt_thread = ''
 
 class Scraper():
 
@@ -75,12 +79,19 @@ class Scraper():
             print("Error download image (1)")
         #(1) : Image has bad download name
 
+
+        # Printing the details of post
         print("Title: \t \t" + title)
         print("OP: \t \t" + poster)
         print("Time: \t \t" + postTime)
         print("Post: \t \t" + postNumber)
         print("Text:\t \t" + textInfo)
         print("----------------------")
+        # Saving the details of apost
+        log_filename = title + " " + postTime + ".csv"
+        f = open(log_filename, "w")
+        headers = "Author, Time, Number, Message\n"
+        f.write(headers)
 
         postContainers.remove(postContainers[0])
 
@@ -105,6 +116,9 @@ class Scraper():
             print("Post \t\t" + postNumber)
             print("Text: \t\t" + postText)
 
+            headers = posterName + "," + postTime +  "," + postNumber +  "," + postText + "\n"
+            f.write(headers)
+
             # Downloading Attached Image
             try:
                 fileClass = postInfo[0].findAll("div", {"class": "file"})
@@ -126,3 +140,4 @@ class Scraper():
                 print("No Image")
 
             print("----------------------")
+        f.close()
