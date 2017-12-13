@@ -21,7 +21,7 @@ while 1 == 1:
 
     print(timesRun)
 
-    for y in range(1,4):
+    for y in range(1,10):
         #Finding all pages from board within range
         if not y == 1:
             pageNumber = str(y)
