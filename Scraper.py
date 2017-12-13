@@ -106,7 +106,13 @@ class Scraper():
             counter = 1
 
             for post in postContainers:
+                print("Downloading " + title)
                 print("Downloading file " + str(counter) +"/" + str(numberOfContainers))
+                try:
+                    print("Thread " + str(self.currentThread))
+                except:
+                    print()
+
                 counter += 1
                 postInfo = post.findAll("div", {"class": "post reply"})
                 # Finds Posters Name

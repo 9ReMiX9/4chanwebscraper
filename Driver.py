@@ -17,7 +17,7 @@ filesDownloadedTotal = 0
 while 1 == 1:
 
 
-    timesRun += 1
+    currentThread = 1
 
     print(timesRun)
 
@@ -40,15 +40,14 @@ while 1 == 1:
         threadContainers = page_soup.findAll("div", {"class": "thread"})
 
         for x in threadContainers:
-            print("https://boards.4chan.org/" + board + "/thread/" + x["id"][1:])
+            # print("https://boards.4chan.org/" + board + "/thread/" + x["id"][1:])
             threadToDownload = Scraper("https://boards.4chan.org/" + board + "/thread/" + x["id"][1:], saveDirectory)
             # print("Downloading thread https://boards.4chan.org/aco/thread/" + x["id"][1:])
             filesDownloadedTemp += threadToDownload.getFilesDownloaded()
+            currentThread += 1
+
 
     filesDownloadedTotal += filesDownloadedTemp
-    print(str(filesDownloadedTemp) + " downloaded from last run")
-    print(str(filesDownloadedTotal) + " downloaded in total")
-    print("Ran " + str(timesRun) + " times")
     time.sleep(300)
 
 ################################
