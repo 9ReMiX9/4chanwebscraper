@@ -121,8 +121,8 @@ class Scraper():
                 else:
                     postNumber = "Not Found"
                     postTime = "Not Found"
-                # Finds Text Attached
-                postText = post.blockquote.text
+                # Finds Text Attached and deletes commas which will ruin CSV file
+                postText = post.blockquote.text.replace(',', '')
                 # print("Poster: \t" + posterName)                                                          #
                 # print("Time: \t\t" + postTime)
                 # print("Post \t\t" + postNumber)
