@@ -8,7 +8,7 @@ from Scraper import Scraper
 
 
 board = "t"
-saveDirectory = "/root/" #SET THE SAVE POSITION
+saveDirectory = "C:\\Users\\Mylo\\Documents\\4Chan\\" #SET THE SAVE POSITION
 timesRun = 0
 
 filesDownloadedTemp = 0
@@ -48,6 +48,7 @@ while 1 == 1:
 
 
     filesDownloadedTotal += filesDownloadedTemp
+    print(filesDownloadedTotal)
     time.sleep(300)
 
 ################################

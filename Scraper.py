@@ -106,8 +106,8 @@ class Scraper():
             counter = 1
 
             for post in postContainers:
-                print("Downloading " + title)
-                print("Downloading file " + str(counter) +"/" + str(numberOfContainers))
+                print("Accessing Post: " + title)
+                print("Post " + str(counter) +"/" + str(numberOfContainers))
                 try:
                     print("Thread " + str(self.currentThread))
                 except:
@@ -145,19 +145,23 @@ class Scraper():
                     saveDirectory = directory + postImage[11 + len(board):]
 
                     if postImage.find("4cdn") > -1:
-
+                        print("Downloading Image")
                         if not os.path.isfile(saveDirectory):
                             # print(saveDirectory)
                             urlretrieve("https://" + postImage, saveDirectory)
-                        # else:
-                            # print("File already exists, skipping")                                        #
-                    # else:
-                        # print("Error download image (1)")                                                 #
-                        # (1) : Image has bad download name
+                        else:
+                            print("File already exists, skipping")                                        #
+                    elif postImage.find("4chan") > -1:
+                        print("Downloading Image")
+                        # print(postImage.replace("is2.4chan.org/" + board + "/", ""))
+                        urlretrieve("https://" + postImage, directory + "/" + postImage.replace("is2.4chan.org/" + board + "/", ""))
+                    else:
+                        print("Error download image (1)")                                                 #
+                        print(postImage)
                 except:
                     fartbox = 1
 
-                os.system('clear')
+                # os.system('clear')
 
                 # print("----------------------")
             f.close()
